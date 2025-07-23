@@ -11,8 +11,24 @@ export async function onRequest(context) {
 
 async function handleTokenExchange(context) {
   const request = context.request;
+  
+  // CORS headers
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { status: 200, headers: corsHeaders });
+  }
+
   if (request.method !== 'POST') {
-    return new Response('Method Not Allowed', { status: 405 });
+    return new Response('Method Not Allowed', { 
+      status: 405, 
+      headers: corsHeaders 
+    });
+  }
   }
 
   try {
@@ -50,7 +66,10 @@ async function handleTokenExchange(context) {
       return new Response(
         JSON.stringify({ accessToken: responseData.access_token }),
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            ...corsHeaders
+          },
         },
       );
     } else {
@@ -69,7 +88,10 @@ async function handleTokenExchange(context) {
       }),
       {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        },
       },
     );
   }

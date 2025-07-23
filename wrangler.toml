@@ -1,0 +1,17 @@
+name = "miruro-anime"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# For Cloudflare Pages deployment
+pages_build_output_dir = "dist"
+
+[build]
+command = "npm run build"
+
+[vars]
+# Environment variables (set these in Cloudflare dashboard)
+# VITE_CLIENT_ID = ""
+# VITE_CLIENT_SECRET = ""
+# VITE_REDIRECT_URI = ""
+# VITE_DEPLOY_PLATFORM = "CLOUDFLARE"
+# VITE_BACKEND_URL = "https://public-miruro-consumet-api.vercel.app/"
