@@ -50,7 +50,7 @@ async function handleTokenExchange(context) {
       return new Response(
         JSON.stringify({ accessToken: responseData.access_token }),
         {
-          headers: { 'Content-Type': 'application.json' },
+          headers: { 'Content-Type': 'application/json' },
         },
       );
     } else {
@@ -69,7 +69,7 @@ async function handleTokenExchange(context) {
       }),
       {
         status: 500,
-        headers: { 'Content-Type': 'application.json' },
+        headers: { 'Content-Type': 'application/json' },
       },
     );
   }
